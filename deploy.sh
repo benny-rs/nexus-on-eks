@@ -35,7 +35,7 @@ echo "==> Initialising Terraform"
 cd terraform
 terraform init -input=false
 
-echo "==> Applying Terraform (EKS takes ~15 min)"
+echo "==> Applying Terraform"
 terraform apply -input=false -auto-approve \
   -var="s3_bucket_name=${S3_BUCKET}" \
   -var="region=${REGION}"
