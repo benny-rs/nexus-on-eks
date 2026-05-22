@@ -121,7 +121,7 @@ resource "aws_iam_role_policy_attachment" "ecr_read" {
 resource "aws_eks_cluster" "nexus" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks_cluster.arn
-  version  = "1.29"
+  version  = "1.33"
 
   vpc_config {
     subnet_ids = aws_subnet.public[*].id
