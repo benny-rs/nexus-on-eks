@@ -1,0 +1,39 @@
+image:
+  repository: <ACCOUNT_ID>.dkr.ecr.ap-southeast-3.amazonaws.com/nexus3
+  tag: "3.68.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer      
+  port: 8081
+  targetPort: 8081
+
+persistence:
+  enabled: true
+  storageClass: "gp2"    
+  size: 10Gi
+  accessMode: ReadWriteOnce
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 1Gi
+  limits:
+    cpu: "2"
+    memory: 4Gi
+
+serviceAccount:
+  create: true
+  name: nexus-sa
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::<ACCOUNT_ID>:role/nexus-irsa-role"
+
+s3:
+  bucketName: "YOUR_S3_BUCKET_NAME"
+  region: "ap-southeast-3"
+
+env:
+  - name: INSTALL4J_ADD_VM_PARAMS
+    value: "-Xms1g -Xmx2g -XX:ActiveProcessorCount=2"
+  - name: AWS_REGION
+    value: "ap-southeast-3"

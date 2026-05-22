@@ -1,0 +1,6 @@
+apiVersion: v2
+name: nexus
+description: Nexus Repository Manager 3 on EKS with S3 blob store
+type: application
+version: 0.1.0
+appVersion: "3.68.0"
